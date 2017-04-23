@@ -75,7 +75,7 @@ int main()
 {
 	int n,m,src,dst,count = 0;
 	cin>>n>>m;
-	cout<<"+++ n = "<<setw(2)<<n<<endl;
+	cout<<"\n+++ n = "<<setw(2)<<n<<endl;
 	cout<<"+++ m = "<<setw(2)<<m<<endl;
 	Graph graph(n);
 	cout<<"+++ Adding edges :"<<endl;
