@@ -43,10 +43,12 @@ class Graph
 {
 	int V;
 	list<int> *adjList;
+	void Crawling(int from,bool visited[]);
 public:
 	Graph(int V);
 	void addEdge(int src,int dst);
 	void printGraph();
+	bool checkconn();
 };
 Graph::Graph(int V)
 {
@@ -71,6 +73,34 @@ void Graph::printGraph()
 		cout<<endl;
 	}
 }
+void Graph::Crawling(int from,bool visited[])
+{
+	visited[from] = true;
+	for(list<int >::iterator it = adjList[from].begin();it!=adjList[from].end();it++)
+	{
+		if(!visited[*it])
+		{
+			Crawling(*it,visited);
+		}
+	}
+}
+bool Graph::checkconn()
+{
+	bool visited[V];
+	for(int i=0;i<V;i++)
+	{
+		visited[i] = false;
+	}
+	Crawling(0,visited);
+	for(int i=0;i<V;i++)
+	{
+		if(!visited[i])
+		{
+			return false;
+		}
+	}
+	return true;
+}
 int main()
 {
 	int n,m,src,dst,count = 0;
@@ -93,7 +123,15 @@ int main()
 		graph.addEdge(src,dst);
 		count++;
 	}
-	cout<<"+++ The grapg is : "<<endl;
+	cout<<"\n+++ The graph is : "<<endl;
 	graph.printGraph();
+	if(graph.checkconn())
+	{
+		cout<<"\n+++ All cities are connected by highways "<<endl; 
+	}
+	else
+	{
+		cout<<"\n+++ All cities are not connected by highways "<<endl;
+	}
 	return 0;
 }
