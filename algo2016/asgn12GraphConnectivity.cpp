@@ -66,8 +66,9 @@ void Graph::printGraph()
 		cout<<"City "<<setw(2)<<i<<" == ";
 		for(list<int>::iterator it = adjList[i].begin();it!=adjList[i].end();it++)
 		{
-
+			cout<<setw(2)<<*it<<" ";
 		}
+		cout<<endl;
 	}
 }
 int main()
