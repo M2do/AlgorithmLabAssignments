@@ -43,6 +43,7 @@ using namespace std;
 class Graph
 {
 	int V;
+	bool* visited;
 	list<int> *adjList;
 	void Crawling(int from,bool visited[]);
 public:
@@ -50,11 +51,15 @@ public:
 	void addEdge(int src,int dst);
 	void printGraph();
 	bool checkconn();
+	bool allVisited();
+	int getFirstUnvisited();
+	void buildHighway(int from);
 };
 Graph::Graph(int V)
 {
 	this->V = V;
 	adjList = new list<int>[V];
+	visited = new bool[V];
 }
 void Graph::addEdge(int src,int dst)
 {
@@ -87,7 +92,6 @@ void Graph::Crawling(int from,bool visited[])
 }
 bool Graph::checkconn()
 {
-	bool visited[V];
 	for(int i=0;i<V;i++)
 	{
 		visited[i] = false;
@@ -101,11 +105,41 @@ bool Graph::checkconn()
 		}
 	}
 	return true;
+
+}
+bool Graph::allVisited()
+{
+	for(int i=0;i<V;i++)
+	{
+		if(!visited[i])
+		{
+			return false;
+		}
+	}
+	return true;
+}
+int Graph::getFirstUnvisited()
+{
+	for(int i=0;i<V;i++)
+	{
+		if(!visited[i])
+		{
+			return i;
+		}
+	}
+	return V-1;
+}
+void Graph::buildHighway(int from)
+{
+	addEdge(0,from);
+	Crawling(from,visited);
+	return;
 }
 int main()
 {
 	int n,m,src,dst,count = 0;
 	cin>>n>>m;
+	cout<<endl;
 	cout<<"\n+++ n = "<<setw(2)<<n<<endl;
 	cout<<"+++ m = "<<setw(2)<<m<<endl;
 	Graph graph(n);
@@ -120,7 +154,7 @@ int main()
 			cout<<endl;
 			cout<<"    ";
 		}
-		cout<<"("<<setw(2)<<src<<","<<setw(2)<<dst<<")";
+		cout<<" ("<<setw(2)<<src<<","<<setw(2)<<dst<<") ";
 		graph.addEdge(src,dst);
 		count++;
 	}
@@ -134,5 +168,14 @@ int main()
 	{
 		cout<<"\n+++ All cities are not connected by highways "<<endl;
 	}
+	cout<<"\n+++ Building highways "<<endl;
+	while(!graph.allVisited())
+	{
+		int i = graph.getFirstUnvisited();
+		cout<<"    ";
+		cout<<"Between City 0 and City "<<setw(2)<<i<<endl;
+		graph.buildHighway(i);
+	}
+	cout<<"\n+++ All cities are connected by highways "<<endl;
 	return 0;
 }
