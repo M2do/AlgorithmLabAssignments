@@ -1,0 +1,18 @@
+n = 20
+44 76 94 88 77 44 84 94 41 25 22 56 48 11 56 2 44 38 52 67 
+
++++ Part 1
+    Floor( 0): Adding w[16] =   2 to bag, G[ 0] =    2
+
+    ...
+
+    Floor(19): Adding w[ 3] =  94 to bag, G[19] = 1063
+--- Total effort = 8201
+
++++ Part 2
+    Floor( 0): Adding w[16] =   2              to bag, G[ 0] =    2
+
+    ...
+
+    Floor(19): Adding G[17] = 412              to bag, G[19] = 1063
+--- Total effort = 4433

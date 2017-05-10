@@ -1,0 +1,35 @@
+insert(T, str, level, status):
+
+if search(T,str) returns success, /* str already present in T */
+	report success and return T
+
+Repeat MAX_ITER_CNT times:
+	Compute i = hash(str, a, t) and j = hash(str, b, t)
+	If i-th or j-th position is empty:
+		Insert str at that empty index
+		Increment n
+		If n/s > 0.5 /* High load factor */
+			Rehash with s = 2*s
+			If rehash successful, report success
+			else report failure
+		else        /* Low load factor, no rehashing necessary */
+			report success
+		Return T
+	else /* both i-th and j-th positions are occupied */
+		str1 = current element in i-th position
+		Insert str in i-th position
+		str = str1 /* try inserting the evicted string */
+
+/* If we are here, there still remains a string str to insert */
+If level >= MAX_REC_LEVEL: /* max no of rehash-insert sequences already tried */
+	Report failure
+else                       /* make rehash attempts */
+	Rehash with changed a,b      /* First rehash attempt */
+	If rehash unsuccessful:
+		Rehash with s = 2*s  /* Second rehash attempt */
+		If rehash unsuccessful:
+			Report failure
+	If rehashing was successful:
+		T = insert(T,str,level+1,status)
+
+Return T

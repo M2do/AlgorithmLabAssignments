@@ -1,0 +1,37 @@
+11
+4 Green Apple
+4 Yellow Pen
+4 Red Shirt
+4 Brown Cake
+4 Red Table
+4 Blue Sky
+4 Black Dog
+4 Green Tea
+4 Black Sea
+4 Blue Sea
+4 Yellow Shirt
+4 Brown Table
+4 Black Shirt
+4 Yellow Table
+4 Purple Sky
+4 Gray Shirt
+4 Red Pen
+1 Yellow
+1 White
+1 Shirt
+2 Shirt
+2 Jeans
+2 Red
+3 Black Dog
+3 Black Cat
+2 Sky
+5 Purple Sky
+2 Sky
+5 Blue Sky
+2 Sky
+3 Green Apple
+5 Green Apple
+3 Green Apple
+5 Black Sea
+2 Sea
+0
